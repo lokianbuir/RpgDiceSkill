@@ -28,32 +28,46 @@ def roll_normal(count, roll_bonus, dice_total):
             break
 
 
-def roll_advantage(roll_bonus):
+def roll_advantage(count, roll_bonus):
+    rolled_results = []
+
     while True:
-        rolled_results = []
-        count = 1
         dice_sides = 20
-        dice_number = 2
         dice_sides = randint(1, dice_sides)
         rolled_results.append(dice_sides)
         print("Die", count, "rolled", dice_sides)
         count += 1
 
-        if count == 3:
+        if count > 2:
+            print(rolled_results)
             best_roll = max(rolled_results)
             total_result = int(roll_bonus) + int(best_roll)
-            print("Your highest roll with bonus is:", total_result)
+            print("Your highest roll of", best_roll, "with your bonus is:", total_result)
             break
 
-# def roll_disadvantage():
+
+def roll_disadvantage(count, roll_bonus):
+    rolled_results = []
+
+    while True:
+        dice_sides = 20
+        dice_sides = randint(1, dice_sides)
+        rolled_results.append(dice_sides)
+        print("Die", count, "rolled", dice_sides)
+        count += 1
+
+        if count > 2:
+            print(rolled_results)
+            worst_roll = min(rolled_results)
+            total_result = int(roll_bonus) + int(worst_roll)
+            print("Your lowest roll of", worst_roll, "with your bonus is:", total_result)
+            break
 
 
 if roll_type == "normal":
     roll_normal(count, roll_bonus, dice_total)
 elif roll_type == "advantage":
-    roll_advantage(roll_bonus)
-
-
-# elif roll_type == "disadvantage":
-#     roll_disadvantage(roll_bonus)
+    roll_advantage(count, roll_bonus)
+elif roll_type == "disadvantage":
+    roll_disadvantage(count, roll_bonus)
 
